@@ -1,32 +1,27 @@
 #include <stdio.h>
-struct poly{
-    int coeff;
-    int power;
-};
-void fun(int n){
-        struct poly poly1[n];
-    for(int i=0;i<n;i++){
-        printf("Enter the coefficient of term %d:",i+1);
-        scanf("%d",&poly1[i].coeff);
-        printf("Enter the power of term:");
-        scanf("%d",&poly1[i].power);
-    }
-    for(int i=0;i<n-1;i++){
-        if(poly1[i+1].coeff>0)
-        printf("%dx^%d+",poly1[i].coeff,poly1[i].power);
-        else if(poly1[i+1].coeff<0)
-       printf("%dx^%d",poly1[i].coeff,poly1[i].power);
-    }
-    if(poly1[n-1].power==0)
-        printf("%d",poly1[n-1].coeff);
-    else
-    printf("%dx^%d",poly1[n-1].coeff,poly1[n-1].power);
+void inverse(){
+	int arr877[3][3],i877,j877;
+	float d877=0;
+	printf("Enter a 3x3 matrix:\n");
+	for(i877=0;i877<3;i877++){
+		for(j877=0;j877<3;j877++){
+			scanf("%d",&arr877[i877][j877]);
+		}
+	}
+	for(i877=0;i877<3;i877++){
+	d877=d877+(arr877[0][i877]*(arr877[1][(i877+1)%3]*arr877[2][(i877+2)%3]-arr877[1][(i877+2)%3]*arr877[2][(i877+1)%3]));
+	}
+	printf("\nInverse matrix:\n");
+	
+	for (i877=0;i877<3;i877++){
+	    for(j877=0;j877<3;j877++){
+	        printf("%f\t",((arr877[(i877+1)%3][(j877+1)%3]*arr877[(i877+2)%3][(j877+2)%3])-(arr877[(i877+1)%3][(j877+2)%3]*arr877[(i877+2)%3][(j877+1)%3]))/d877);
+	    }
+	    
+	    printf("\n");
+	}
 }
 int main(){
-    int n;
-    printf("Enter the number of terms:");
-    scanf("%d",&n);
-    fun(n);
-    
-    return 0;
+	inverse();
+	return 0;
 }
